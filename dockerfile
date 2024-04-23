@@ -1,9 +1,14 @@
-FROM openjdk:11-jre-slim
+# Use uma imagem base com suporte Java
+FROM openjdk:11
 
-WORKDIR /app
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /usr/src/app
 
-COPY target/*.jar app.jar
+# Copie o arquivo Java para o diretório de trabalho no contêiner
+COPY RodandoDockerApplication.java /usr/src/app
 
-EXPOSE 8080
+# Compile o arquivo Java
+RUN javac RodandoDockerApplication.java
 
-CMD ["java", "-jar", "app.jar"]
+# Comando para executar o aplicativo Java quando o contêiner for iniciado
+CMD ["java", "RodandoDockerApplication"]
